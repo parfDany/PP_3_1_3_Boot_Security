@@ -36,15 +36,9 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public User() {
+
     }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-
     public User(String name, String password, Collection<? extends GrantedAuthority> authorities) {
     }
 
@@ -58,6 +52,16 @@ public class User implements UserDetails {
         this.password = password;
         this.roles = roles;
     }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
 
     public long getId() {
         return id;
