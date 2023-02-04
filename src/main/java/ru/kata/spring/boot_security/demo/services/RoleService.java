@@ -6,5 +6,10 @@ import ru.kata.spring.boot_security.demo.entities.Role;
 import java.util.List;
 @Service
 public interface RoleService {
-    List<Role> getAllRole();
+
+    public void add(Role role);
+    public List<Role> getAllRole();
+    public Role getRole(Long id);
+    public void deleteRole(Long id);
+    public void editRole(Role role);
 }

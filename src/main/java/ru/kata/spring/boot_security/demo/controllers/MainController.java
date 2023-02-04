@@ -17,13 +17,13 @@ public class MainController {
         return "user" + principal;
     }
 
-    @GetMapping("/read_profile")
-    public String pageForReadProfile(){
-        return "read profile page";
-    }
-
-    @GetMapping("/read_for_admins")
-    public String pagerOnlyForAdmins(){
-        return "admins page";
-    }
+//    @GetMapping("/read_profile")
+//    public String pageForReadProfile(){
+//        return "read profile page";
+//    }
+//
+//    @GetMapping("/read_for_admins")
+//    public String pagerOnlyForAdmins(){
+//        return "admins page";
+//    }
 }

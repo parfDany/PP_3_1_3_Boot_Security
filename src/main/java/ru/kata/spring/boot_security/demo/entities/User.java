@@ -17,12 +17,12 @@ public class User implements UserDetails {
     @Column(name = "id")
     private long id;
 
-    //    @Column(name = "roles")
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name="users_roles",
-//                joinColumns = @JoinColumn(name="user_id"),
-//                inverseJoinColumns = @JoinColumn(name= "role_id"))
+
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="users_roles",
+                joinColumns = @JoinColumn(name="user_id"),
+                inverseJoinColumns = @JoinColumn(name= "role_id"))
+//    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
     @Column(name = "name")
@@ -39,15 +39,10 @@ public class User implements UserDetails {
     public User() {
 
     }
-    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-    }
 
-    public User(long id, String username, String lastname, int age,
-                String email, String password, Set<Role> roles) {
-        this.id = id;
+    public User(String username, String lastname, String email, String password,Set<Role> roles) {
         this.username = username;
         this.lastname = lastname;
-        this.age = age;
         this.email = email;
         this.password = password;
         this.roles = roles;
