@@ -1,11 +1,14 @@
 package ru.kata.spring.boot_security.demo.entities;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,25 +19,26 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="users_roles",
-                joinColumns = @JoinColumn(name="user_id"),
-                inverseJoinColumns = @JoinColumn(name= "role_id"))
-//    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Role> roles;
-
     @Column(name = "name")
     private String username;
     @Column(name = "last_name")
     private String lastname;
     @Column(name = "age")
     private int age;
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
     @Column(name = "password")
     private String password;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+
+    )
+    @Fetch(FetchMode.JOIN)
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
 

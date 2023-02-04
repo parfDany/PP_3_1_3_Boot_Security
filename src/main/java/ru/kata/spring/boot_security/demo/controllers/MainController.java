@@ -12,7 +12,7 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/authenticated")
+    @GetMapping("/user")
     public String pageForAuthenticatedUsers(Principal principal){
         return "user" + principal;
     }
